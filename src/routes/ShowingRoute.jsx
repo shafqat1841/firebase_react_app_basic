@@ -42,7 +42,8 @@ const ShowingRoute = () => {
 								<ButtonCom
 									title="update"
 									onClick={() => {
-										setDocumentRef(doc(db, "users", user.id));
+										let docRef = doc(db, "users", user.id);
+										setDocumentRef(docRef);
 										setUpdating(true);
 									}}
 								/>
