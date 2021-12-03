@@ -3,6 +3,7 @@ import { updateDoc, getDoc } from "firebase/firestore";
 
 import InputCom from "../components/InputCom";
 import ButtonCom from "../components/ButtonCom";
+import MarginCom from "../components/MarginCom";
 
 const UpdatingCom = ({ settingUpdating, documentRef }) => {
 	const [name, setName] = useState("");
@@ -12,24 +13,26 @@ const UpdatingCom = ({ settingUpdating, documentRef }) => {
 		getDoc(documentRef).then((doc) => {
 			setLastName(doc.data().name);
 		});
-	});
+	}, [documentRef]);
 
 	return (
-		<div>
+		<>
 			<InputCom
 				initialValue={lastName}
 				onChange={(value) => {
 					setName(value);
 				}}
 			/>
-			<ButtonCom
-				title="update"
-				onClick={() => {
-					updateDoc(documentRef, name ? { name: name } : { name: lastName });
-					settingUpdating(false);
-				}}
-			/>
-		</div>
+			<MarginCom marginning="1rem 0 0 0">
+				<ButtonCom
+					title="update"
+					onClick={() => {
+						updateDoc(documentRef, name ? { name: name } : { name: lastName });
+						settingUpdating(false);
+					}}
+				/>
+			</MarginCom>
+		</>
 	);
 };
 
