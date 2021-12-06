@@ -1,6 +1,8 @@
 import React from "react";
 
-const InputCom = ({ onChange, initialValue }) => {
+const InputCom = ({ forReRendering, onChange, initialValue }) => {
+	// console.log(forReRendering ? forReRendering : null);
+
 	return (
 		<>
 			<input
@@ -13,4 +15,7 @@ const InputCom = ({ onChange, initialValue }) => {
 	);
 };
 
-export default InputCom;
+// export default React.memo(InputCom);
+export default React.memo(InputCom, (prevProps, nextProps) => {
+	return prevProps.forReRendering === nextProps.forReRendering;
+});

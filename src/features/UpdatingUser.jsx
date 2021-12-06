@@ -6,20 +6,18 @@ import { UserUseContext } from "../context/UserContext";
 
 const UpdatingUser = ({ docRefId }) => {
 	const { setUpdatingUserDocRef } = UserUseContext();
-
 	let navigate = useNavigate();
+
 	return (
 		<ButtonCom
+			forReRendering={`UpdatingUser + ${docRefId} +  ButtonCom`}
 			title="update"
-			onClick={() => {
+			onClick={React.useCallback(() => {
 				setUpdatingUserDocRef(docRefId);
 				navigate("/UpdatingUser");
-				// let docRef = doc(db, "users", user.id);
-				// setDocumentRef(docRef);
-				// setUpdating(true);
-			}}
+			}, [docRefId])}
 		/>
 	);
 };
 
-export default UpdatingUser;
+export default React.memo(UpdatingUser);

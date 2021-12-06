@@ -1,4 +1,4 @@
-import React from "react";
+import { useCallback, memo } from "react";
 import ButtonCom from "../components/ButtonCom";
 import { UserUseContext } from "../context/UserContext";
 
@@ -7,15 +7,15 @@ const DeletingUser = ({ docRefId }) => {
 
 	return (
 		<ButtonCom
+			forReRendering={`DeleteUser + ${docRefId} + ButtonCom`}
 			title="delete"
-			onClick={() => {
-				console.log("delete");
-				console.log(docRefId);
+			onClick={useCallback(() => {
 				deleteUser(docRefId);
-				// deleteUser(docRef);
-			}}
+			}, [docRefId])}
 		/>
 	);
 };
 
-export default DeletingUser;
+export default memo(DeletingUser, (prevProps, nextProps) => {
+	return prevProps.docRefId === nextProps.docRefId;
+});

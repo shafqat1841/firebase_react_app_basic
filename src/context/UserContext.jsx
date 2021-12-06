@@ -26,14 +26,12 @@ const UserProvider = (props) => {
 	const [users, setUsers] = useState([]);
 	const [updatingUserDocRef, setUpdatingUserDocRef] = useState();
 	const [gettingUserDocRef, setGettingUserDocRef] = useState();
+	// let [test, setTest] = useState(0);
 
-	// const getAllUsers = async (setUsers) => {
-	// 	await snapshot(setUsers);
-	// };
-
-	// const getAllUsers = useCallback(async () => {
-	// 	await snapshot(setUsers);
-	// }, [setUsers]);
+	// setInterval(() => {
+	// 	setTest(test + 1);
+	// 	console.log(test);
+	// }, 2000);
 
 	useEffect(() => {
 		snapshot(setUsers);

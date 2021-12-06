@@ -1,4 +1,4 @@
-import React from "react";
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import ButtonCom from "../components/ButtonCom";
@@ -10,17 +10,12 @@ const GettingUser = ({ docRefId }) => {
 	const { setGettingUserDocRef } = UserUseContext();
 	return (
 		<ButtonCom
+			forReRendering={`GettingUser + ${docRefId} + ButtonCom`}
 			title="detail"
-			onClick={() => {
+			onClick={useCallback(() => {
 				setGettingUserDocRef(docRefId);
 				navigate("/GettingUser");
-				// let docRef = doc(db, "users", user.id);
-				// setSingleUserRef(docRef);
-				// setGettingSingleUser(true);
-				// getDoc(docRef).then((doc) => {
-				// 	setSingleUserRef({ ...doc.data(), id: doc.id });
-				// });
-			}}
+			}, [docRefId])}
 		/>
 	);
 };

@@ -13,9 +13,15 @@ const GettingPage = () => {
 	let navigate = useNavigate();
 
 	useEffect(() => {
-		getUser(gettingUserDocRef, setUser);
-		return getUser(gettingUserDocRef, setUser);
-	}, [gettingUserDocRef, getUser]);
+		if (gettingUserDocRef) {
+			getUser(gettingUserDocRef, setUser);
+			return getUser(gettingUserDocRef, setUser);
+		} else {
+			let gettingUserDocRef = localStorage.getItem("gettingUserDocRef");
+			getUser(gettingUserDocRef, setUser);
+			return getUser(gettingUserDocRef, setUser);
+		}
+	}, [gettingUserDocRef]);
 
 	useEffect(() => {
 		if (user !== undefined) {
@@ -33,8 +39,12 @@ const GettingPage = () => {
 			<h4>{userLength ? userLength : null}</h4>
 			<h4>User ID Length :</h4>
 			<h4>{userIdLength ? userIdLength : null}</h4>
-			<MarginCom marginning="0 0 1rem 0">
+			<MarginCom
+				forReRendering={`GettingPage + null + MarginCom`}
+				marginning="0 0 1rem 0"
+			>
 				<ButtonCom
+					forReRendering={`GettingPage + null + MarginCom`}
 					title="Main Page"
 					onClick={() => {
 						navigate("/");

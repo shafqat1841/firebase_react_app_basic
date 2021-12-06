@@ -31,18 +31,21 @@ const settingUserLastNameApi = async (docRefId, setUpdatingUserLastName) => {
 	let docRef = await doc(db, "users", docRefId);
 	getDoc(docRef).then((doc) => {
 		setUpdatingUserLastName(doc.data().name);
+		localStorage.setItem("updatingUserDocRef", docRefId);
 	});
 };
 
 const updatingUserApi = async (docRefId, name, lastName) => {
 	let docRef = await doc(db, "users", docRefId);
 	await updateDoc(docRef, name ? { name: name } : { name: lastName });
+	await localStorage.setItem("docRefId", docRefId);
 };
 
 const gettingUserApi = async (docRefId, settingUser) => {
 	let docRef = await doc(db, "users", docRefId);
 	getDoc(docRef).then((doc) => {
 		settingUser({ ...doc.data(), id: doc.id });
+		localStorage.setItem("gettingUserDocRef", docRefId);
 	});
 };
 

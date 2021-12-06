@@ -1,12 +1,15 @@
+import { memo } from "react";
 import styled from "styled-components";
 
 const FlexCom = ({
+	forReRendering,
 	flexDirection,
 	alignItems,
 	justifyContent,
 	marginning,
 	...props
 }) => {
+	// console.log(forReRendering ? forReRendering : null);
 	return (
 		<Div
 			flexDirection={flexDirection}
@@ -18,8 +21,9 @@ const FlexCom = ({
 		</Div>
 	);
 };
-
-export default FlexCom;
+export default memo(FlexCom, (prevProps, nextProps) => {
+	return prevProps.forReRendering === nextProps.forReRendering;
+});
 
 const Div = styled.div`
 	display: flex;
