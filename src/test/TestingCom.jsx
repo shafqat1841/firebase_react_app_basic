@@ -1,3 +1,4 @@
+// components is for testing only
 import React from "react";
 
 const TestingCom = () => {

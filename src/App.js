@@ -14,6 +14,7 @@ import FlexCom from "./components/FlexCom";
 import { UserProvider } from "./context/UserContext";
 
 // main app which have all the child components
+// ---------------------------------------------- component Starts ---------------------------------------------------
 const App = () => {
 	// I have disabled warnings because those are dependence warning and those dependences are on my according
 	// comment line 12 to see warnings
@@ -21,8 +22,12 @@ const App = () => {
 	console.log("comment line 12 to see warnings to see all the warnings");
 
 	return (
+		// BrowserRouter is used for routing all the child components
 		<BrowserRouter>
+			{/*UserProvider context is used so that all the states , properties and method from it */}
+			{/* can be used in child components */}
 			<UserProvider>
+				{/* FlexCom is used so that child components render acoording to it */}
 				<FlexCom
 					forReRendering="app"
 					flexDirection="column"
@@ -36,5 +41,6 @@ const App = () => {
 		</BrowserRouter>
 	);
 };
+// ---------------------------------------------- component Ends ---------------------------------------------------
 
 export default App;
